@@ -1,0 +1,12 @@
+
+<div class="self">
+    <div class="avatar">
+        <img src="{avatarUrl}" alt="{nick}头像" width="40" height="40" on-click={this.onAvatarClick()}>
+    </div>
+    <h3 class="nick">{nick}</h3>
+</div>
+
+<card isShow={isShow} type={type} size={size}
+    avatarUrl={avatarUrl} nick={nick} 
+    gender={gender} addr={addr} remark={remark}
+    on-msg={this.$emit('selfMsg')} />

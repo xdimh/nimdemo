@@ -1,0 +1,9 @@
+
+<ul class="tab-content friends">
+    {#list fs as friend}
+    <a href="javascript:void(0);" on-click={this.$emit('msg', friend)}>
+        <div class="avatar"><img src="{friend.avatar}" width="30" height="30" alt="{friend.nick}头像"></div>
+        <p class="nick">{friend.nick}</p>
+    </a>
+    {/list}
+</ul>

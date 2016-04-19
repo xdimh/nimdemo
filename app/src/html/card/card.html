@@ -1,0 +1,26 @@
+
+{#if isShow}
+<div class="card">
+    <div class="avatar">
+        <img src="{avatarUrl}" alt="{nick}头像" width="{size}" height="{size}">
+    </div>
+    <div class="profile">
+        <div class="info">
+            <p class="nick">{nick}</p>
+            <p class="gender">{gender}</p>
+            {#if type === 'self'}
+            <p class="msg">
+                <a href="javascript:void(0);" on-click={this.$emit('msg')}>发消息</a>
+            </p>
+            {/if}
+        </div>
+        <p class="remark">备注: {remark}</p>
+        <p class="addr">地区: {addr}</p>
+        {#if type === 'friend'}
+        <div class="send">
+            <button class="btn btn-send">发消息</button>
+        </div>
+        {/if}
+    </div>
+</div>
+{/if}

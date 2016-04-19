@@ -1,0 +1,62 @@
+a{color:inherit;}
+a:hover{color:#fff;}
+html,body{height:100%;background-color:#fff;}
+.g-con{position:relative;height:80%;min-height:600px;padding-top:100px;}
+@media (max-height: 768px){.g-con{padding-top:0;height:100%;}
+}
+.g-inner{max-width:1000px;min-width:800px;height:100%;margin:0 auto;overflow:hidden;}
+.panel{position:relative;float:left;width:280px;height:100%;background:#2e3238;color:#fff;}
+.hd{position:relative;padding:18px;height:76px;zoom:1;border-bottom:1px solid #292c33;}
+.hd:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.hd .self{float:left;display:table;font-size:0;}
+.hd .self .avatar,.hd .self .nick{display:table-cell;vertical-align:middle;}
+.hd .self .nick{padding-left:12px;font-size:18px;font-weight:400;}
+.hd .self .avatar{cursor:pointer;}
+.hd .opt{width:80px;position:relative;float:right;}
+.hd .opt a{color:inherit;line-height:40px;}
+.hd .opt .search{position:absolute;z-index:101;right:0;top:40px;width:100px;background:#fff;padding:6px 8px;border-radius:4px;}
+.card{position:absolute;top:65px;left:39px;z-index:100;background:#fff;color:#333;border-radius:4px;}
+.card .avatar{font-size:0;border-bottom:1px solid #eee;}
+.card .avatar img{border-radius:4px;}
+.card .profile{padding:10px 12px;}
+.card .info{margin-bottom:10px;overflow:hidden;}
+.card .info >p{float:left;}
+.card .info .nick{font-weight:400;}
+.card .info .gender{margin-left:12px;}
+.card .info .msg{float:right;}
+.card .remark,.card .addr{font-size:12px;margin-top:5px;}
+.tab{display:table;width:100%;padding:8px 0;border-bottom:1px solid #292c33;}
+.tab >a.tab-item{display:table-cell;text-align:center;vertical-align:middle;}
+.content{position:absolute;z-index:99;top:112px;left:0;bottom:0;width:100%;overflow:auto;}
+.tab-content.friends a{display:table;width:100%;padding:12px 12px 6px 33px;border-bottom:1px solid #292c33;font-size:0;}
+.tab-content.friends a:last-child{border-bottom:none;}
+.tab-content.friends a >*{display:table-cell;vertical-align:middle;}
+.tab-content.friends a .avatar{width:30px;height:30px;border-radius:50%;}
+.tab-content.friends a .nick{padding-left:10px;font-size:14px;}
+.tab-content.session a{display:block;padding:12px 12px 6px 33px;border-bottom:1px solid #292c33;}
+.tab-content.session a .nick{font-size:14px;margin-bottom:8px;}
+.tab-content.session a .msg{font-size:12px;}
+.chat{margin-left:280px;height:100%;border:1px solid #aaa;border-left:none;background-color:#eee;}
+.chat .chat-box{position:relative;height:100%;}
+.chat .chat-box .chat-box-hd{position:absolute;left:0;top:0;width:100%;line-height:50px;border-bottom:1px solid #ccc;text-align:center;}
+.chat .chat-box .chat-box-hd h3{font-size:16px;}
+.chat .chat-box .chat-box-bd{padding:60px 10px 210px;height:100%;overflow:auto;}
+.chat .chat-box .chat-box-bd .clear{clear:both;}
+.chat .chat-box .chat-box-bd .onemsg{display:table;max-width:40%;font-size:0;margin-bottom:12px;}
+.chat .chat-box .chat-box-bd .onemsg.mymsg{float:right;}
+.chat .chat-box .chat-box-bd .onemsg.mymsg .avatar{padding-left:10px;}
+.chat .chat-box .chat-box-bd .onemsg.othermsg{float:left;}
+.chat .chat-box .chat-box-bd .onemsg.othermsg .msg{background-color:#ccc;margin-left:8px;}
+.chat .chat-box .chat-box-bd .onemsg.othermsg .avatar{padding-right:10px;}
+.chat .chat-box .chat-box-bd .onemsg .avatar{display:table-cell;vertical-align:middle;width:30px;}
+.chat .chat-box .chat-box-bd .onemsg .avatar img{width:24px;height:24px;border-radius:50%;}
+.chat .chat-box .chat-box-bd .onemsg .msg{display:table-cell;vertical-align:middle;padding:4px 6px;border-radius:4px;font-size:13px;background-color:#238efa;color:#fff;word-wrap:break-word;word-break:break-all;}
+.chat .chat-box .chat-box-ft{position:absolute;bottom:0;left:0;width:100%;height:200px;border-top:1px solid #ccc;}
+.chat .chat-tool{position:relative;height:100%;}
+.chat .chat-tool .toolbar{position:absolute;width:100%;left:0;top:0;line-height:30px;font-size:12px;}
+.chat .chat-tool .toolbar a{color:#999;padding:0 6px;}
+.chat .chat-tool .toolbar a:hover{color:#333;}
+.chat .chat-tool .send-box{position:relative;width:100%;padding:40px 10px 45px;height:100%;overflow:auto;}
+.chat .chat-tool .send-box .send-show{width:100%;height:100%;padding:1px;outline:0;border:0;white-space:pre-wrap;word-wrap:break-word;}
+.chat .chat-tool .send-handler{position:absolute;width:100%;left:0;bottom:0;line-height:45px;padding-right:10px;text-align:right;}
+.chat .chat-tool .send-handler .btn-send{width:75px;height:35px;background-color:#ebebeb;color:#333;}

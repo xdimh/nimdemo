@@ -1,0 +1,30 @@
+
+<div class="g-inner">
+    <div class="panel">
+        <div class="hd">
+            <me avatarUrl={selfProfile.avatarUrl} nick={selfProfile.nick} 
+                addr={selfProfile.addr} gender={selfProfile.gender} remark={selfProfile.remark}
+                isShow={selfProfile.card.isShow} size={selfProfile.card.size} type={selfProfile.card.type}
+                on-showSelf={this.showSelf()} on-selfMsg={this.showSendSelf()} />
+
+            <div class="opt">
+                <a href="javascript:void(0);" on-click={this.showSearch()}>添加好友</a>
+
+                <search status={search.status} scon={search.scon} on-add={this.addFriend()}/>
+            </div>
+        </div>
+        <list index={list.index} fs={list.fs} sessions={list.sessions} 
+            on-chatf={this.showSendFriends($event)} on-smsg={this.showSendFriends($event)} />
+    </div>
+
+    <div class="chat">
+        {#if type === 'chat'}
+        <chat-box to={chat.to} avatar={selfProfile.avatarUrl} msgs={chat.msgs} 
+            sendContent={chat.sendContent} on-sendmsg={this.sendMsg($event)}/>
+        {#elseif type === 'info'}
+        <card />
+        {#elseif type === 'team'}
+        <team />
+        {/if}
+    </div>
+</div>

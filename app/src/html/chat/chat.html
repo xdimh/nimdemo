@@ -1,0 +1,29 @@
+
+<div class="chat-box">
+    <div class="chat-box-hd">
+        <h3>{to.nick}</h3>
+    </div>
+    <div class="chat-box-bd">
+        {#list msgs as msg}
+        {#if msg.user === 'me'}
+        <li class="onemsg mymsg">
+            <p class="msg">{#include msg.content}</p>
+            <div class="avatar">
+                <img src="{avatar}" width="30" height="30">
+            </div>
+        </li>
+        {#else}
+        <li class="onemsg othermsg">
+            <div class="avatar">
+                <img src="{to.avatar}" width="30" height="30">
+            </div>
+            <p class="msg">{#include msg.content}</p>
+        </li>
+        {/if}
+        <p class="clear"></p>
+        {/list}
+    </div>
+    <div class="chat-box-ft">
+        <chat-tool sendContent={sendContent} on-sendmsg={this.$emit('sendmsg', $event)}/>
+    </div>
+</div>

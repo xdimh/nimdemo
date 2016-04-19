@@ -1,0 +1,309 @@
+// clear float
+$clearfix = {
+    zoom:1;
+    &:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+}
+a {
+    color: inherit;
+    &:hover { color: #fff; }
+}
+
+html, body {
+    height: 100%;
+    background-color: #fff;
+}
+.g-con {
+    position: relative;
+    height: 80%;
+    min-height: 600px;
+    padding-top: 100px;
+
+    @media (max-height: 768px) {
+        padding-top: 0;
+        height: 100%;
+    }
+}
+.g-inner {
+    max-width: 1000px;
+    min-width: 800px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.panel {
+    position: relative;
+    float: left;
+    width: 280px;
+    height: 100%;
+    background: #2e3238;
+    color: #fff;
+}
+
+.hd {
+    position: relative;
+    padding: 18px;
+    height: 76px;
+    $clearfix();
+    border-bottom: 1px solid #292c33;
+
+    .self {
+        float: left;
+        display: table;
+        font-size: 0;
+
+        .avatar, .nick {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .nick {
+            padding-left: 12px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .avatar {
+            cursor: pointer;
+        }
+    }
+    .opt {
+        width: 80px;
+        position: relative;
+        float: right;
+        a{ color: inherit; line-height:40px; }
+        .search {
+            position: absolute;
+            z-index: 101;
+            right: 0;
+            top: 40px;
+            width: 100px;
+            background: #fff;
+            padding: 6px 8px;
+            border-radius: 4px;
+        }
+    }
+}
+
+.card {
+    position: absolute;
+    top: 65px;
+    left: 39px;
+    z-index: 100;
+    background: #fff;
+    color: #333;
+    border-radius: 4px;
+
+    .avatar {
+        font-size: 0; 
+        border-bottom: 1px solid #eee; 
+        img { border-radius: 4px; }
+    }
+    .profile {
+        padding: 10px 12px;
+    }
+    .info {
+        margin-bottom: 10px;
+        overflow: hidden;
+
+        > p {
+            float: left;
+        }
+        .nick { font-weight: 400; }
+        .gender { margin-left: 12px; }
+        .msg { 
+            float: right; 
+        }
+    }
+    .remark, .addr {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+.tab {
+    display: table;
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1px solid #292c33;
+    > a.tab-item {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+.content {
+    position: absolute;
+    z-index: 99;
+    top: 112px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+} 
+.tab-content {
+    &.friends {
+        a { 
+            display: table;
+            width: 100%;
+            padding: 12px 12px 6px 33px;
+            border-bottom: 1px solid #292c33;
+            font-size: 0;
+            &:last-child {
+                border-bottom: none;
+            }
+
+            > * { 
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            .nick {
+                padding-left: 10px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &.session {
+        a {
+            display: block;
+            padding: 12px 12px 6px 33px;
+            border-bottom: 1px solid #292c33;
+            .nick {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            .msg {
+                font-size: 12px;
+            }
+        }
+    }
+    
+}
+
+.chat {
+    margin-left: 280px;
+    height: 100%;
+    border: 1px solid #aaa;
+    border-left: none;
+    background-color: #eee;
+
+    .chat-box {
+        position: relative;
+        height: 100%;
+        .chat-box-hd {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            line-height: 50px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            h3 { font-size: 16px; }
+        }
+        .chat-box-bd {
+            padding: 60px 10px 210px;
+            height: 100%;
+            overflow: auto;
+            .clear { clear: both; }
+            .onemsg {
+                display: table;
+                max-width: 40%;
+                font-size: 0;
+                margin-bottom: 12px;
+                &.mymsg {
+                    float: right;
+                    .avatar {
+                        padding-left: 10px;
+                    }
+                }
+                &.othermsg {
+                    float: left;
+                    .msg {
+                        background-color: #ccc;
+                        margin-left: 8px;
+                    }
+                    .avatar {
+                        padding-right: 10px;
+                    }
+                }
+                .avatar {
+                    display: table-cell;
+                    vertical-align: middle;
+                    width: 30px;
+                    img { width: 24px; height: 24px; border-radius: 50%; }
+                }
+                .msg {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 4px 6px;
+                    border-radius: 4px;
+                    font-size: 13px;
+                    background-color: #238efa;
+                    color: #fff;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                }
+            }
+
+        }
+        .chat-box-ft {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            border-top: 1px solid #ccc;
+        }
+    } 
+    .chat-tool {
+        position: relative;
+        height: 100%;
+
+        .toolbar {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            line-height: 30px;
+            font-size: 12px;
+            a { 
+                color: #999; 
+                padding: 0 6px;
+                &:hover { color: #333; }
+            }
+        }
+        .send-box {
+            position: relative;
+            width: 100%;
+            padding: 40px 10px 45px;
+            height: 100%;
+            overflow: auto;
+            .send-show {
+                width: 100%;
+                height: 100%;
+                padding: 1px;
+                outline: 0;
+                border: 0;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+        .send-handler {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            line-height: 45px;
+            padding-right: 10px;
+            text-align: right;
+            .btn-send {
+                width: 75px;
+                height: 35px;
+                background-color: #ebebeb;
+                color: #333;
+            }
+        }
+    }
+}

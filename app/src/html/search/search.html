@@ -1,0 +1,7 @@
+
+{#if status === 'show'}
+<div class="search">
+    <input type="text" class="input search-input" r-model={scon}>
+    <button class="btn btn-search" on-click={this.$emit('add')}>添加</button>
+</div>
+{/if}

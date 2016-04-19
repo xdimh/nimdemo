@@ -1,0 +1,12 @@
+
+<div class="tab">
+    <a href="javascript:void(0);" class="tab-item" on-click={index=1}>会话</a>
+    <a href="javascript:void(0);" class="tab-item" on-click={index=2}>好友</a>
+</div>
+<div class="content">
+    {#if index === 1}
+    <session sessions={sessions} on-msg={this.$emit('smsg', $event)} />
+    {#elseif index === 2}
+    <friends fs={fs} on-msg={this.$emit('chatf', $event)} />
+    {/if}
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>IM Login</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/login.css">
+</head>
+<body>
+    <div class="g-con">
+        <div class="g-box">
+            <!-- 登录框 -->
+            <div class="g-lg" id="lg">
+                <form>
+                    <div class="form-group">
+                        <input class="input j-account" type="text" placeholder="Account">
+                    </div>
+                    <div class="form-group">
+                        <input class="input j-password" type="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block j-login" type="button">登录</button>
+                    </div>
+                </form>
+                <p class="m-switch j-switch"><a href="javascript:void(0)">去注册IM</a></p>
+            </div>
+            <!-- 注册 -->
+            <div class="g-rg f-dn" id="rg">
+                <form>
+                    <div class="form-group">
+                        <input class="input j-account" type="text" placeholder="Account">
+                    </div>
+                    <div class="form-group">
+                        <input class="input j-nickname" type="text" placeholder="Nickname">
+                    </div>
+                    <div class="form-group">
+                        <input class="input j-password" type="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block j-register" type="button">注册</button>
+                    </div>
+                </form>
+                <p class="m-switch j-switch"><a href="javascript:void(0)">去登录IM</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/nej/src/define.js?pro=/src/javascript/&module=/src/html/"></script>
+    <script type="text/javascript" src="/src/javascript/login.js"></script>
+</body>
+</html>

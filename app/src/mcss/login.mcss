@@ -1,0 +1,33 @@
+
+html, body {
+    height: 100%;
+}
+.g-con {
+    position: relative;
+    height: 100%;
+    background-color: #eee;
+}
+.g-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+    width: 400px;
+    height: 300px;
+}
+.g-lg {
+
+}
+.m-switch {
+    margin-top: 20px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        color: #dfa251;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
