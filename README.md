@@ -312,3 +312,18 @@ NEJ.define([
 
 ```
 ``im.data = NEJ.copy({},state);`` 如果改成im.data = state 这个state可能莫名会多出很多奇怪的属性，因为regularjs库的原因，组件的一些属性可能成为data的属性。所以整个项目在处理action产生新的state时需要不可变数据操作工具类似immutable.js。自此项目架构基本形成。
+
+#### 3.集成redux-devtools
+
+安装 [chrome extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+
+按照如下方式在store上添加代码
+``` javascript
+ return function appStore(initialState) {
+        return Redux.createStore(rootReducer,initialState,Redux.compose(Redux.applyMiddleware(thunkMiddleware),window.devToolsExtension ? window.devToolsExtension() : undefined));
+    };
+```
+
+添加了``window.devToolsExtension ? window.devToolsExtension() : undefined``这段代码，然后启动应用就可以通过浏览器扩展插件进行调试了。
+
+![redux-devtools](http://7oxjbb.com1.z0.glb.clouddn.com/redux-devtools.jpg)
