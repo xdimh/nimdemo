@@ -1,25 +1,23 @@
----
-title: redux + regularjs
-tags: redux,regular
-grammar_cjkRuby: true
----
+
+## redux + regularjs
+
 
 最近组里有一个Web-IM的项目，在调研项目架构方案的过程中看到蘑菇街的一篇文章[Web-IM前端解决方案](http://mogu.io/web-im-fe-solution-13),给了一定的启发，整个Web-IM应用肯定需要组件化，需要MVVM设计模式，和其他项目一样，根据整个应用进行组件划分，并且为了整个应用的数据单一便于管理和维护，采用整个应用维持一个数据源，然后自上而下分发到各级子组件分别进行逻辑处理并作相应的渲染的方式进行数据组织。但最后发现数据源维护在顶级组件，
 
-![enter description here][1]
+![初始架构](http://7oxjbb.com1.z0.glb.clouddn.com/init.jpg)
+
 
 子组件为了改变顶级数据源就需要将事件一层一层冒泡到顶级组件委托给顶级组件去处理，当所有组件的事件都由顶级处理的时候，势必会导致顶级组件逻辑变得越来越多，文件也会变得越来越大，到一定阶段代码就会变得难以维护。
 所以就需要拆分顶级组件的逻辑为多个文件，将相关的逻辑放在一块，正好最近在看redux，觉得redux这种模式刚好和我们所需要的数据组织方式相吻合，通过redux顶级可以将数据源的管理托管给redux，除了数据源还可以将顶级组件的逻辑通过redux的reducer进行拆分，刚好可以解决顶级组件逻辑臃肿的问题。
 
-![enter description here][2]
+![改进后](http://7oxjbb.com1.z0.glb.clouddn.com/version0.2.1.jpg)
 
 
 子组件不用将事件委托给顶级组件，而是可以通过dispatch action 委托给redux进行统一处理，因为action的特殊性，为了使得有些组件能够更加通用，所以有些组件依然采用事件委托给上级组件进行处理，这样也不至于导致处理逻辑分的过细。
 
 ### 1. redux 在架构中做了什么
 
-![enter description here][3]
-
+![redux流程](http://7oxjbb.com1.z0.glb.clouddn.com/version-0.2.jpg)
 
 在redux模式中，任何操作包括单击，发起ajax请求，ajax请求完成，ajax请求失败，发送消息，数据库连接，等等都被看做是一个action，action通常是一个简单的对象，对象中的type属性代表action的类型，类似于事件类型，除了type这个强制属性，还可以添加data等属性来存储数据信息，便于后续使用。从图中可以看出，Store 是连接其他部分的核心，整个Web-IM的数据源委托给Store进行管理，且Web-IM和Store采用的是发布订阅模式，Web-IM订阅者关注着State的变化，当State一旦发生了改变，Store就会通知Web-IM订阅者,Web-IM得到了最新的State后然后更新他的数据，并对UI进行相应的更新。同时Store也是action的分发器，将Web-IM产生的action分发给Reducers处理，所以通过这样的方式，Web-IM原本集中在顶级组件的事件处理逻辑就可以拆分到多个Reducer中进行处理了。Reducer的功能和Array.reduce方法很像，输入state 和 action，输出新的state交由Store管理。Store就会将state的变更通知给Web-IM进行数据更新和UI更新。具体的redux的一些概念可以参考[Redux 中文文档](http://camsong.github.io/redux-in-chinese/);
 
@@ -189,7 +187,8 @@ export default todoApp;
 ```
 
 从代码中看到，虽然通过这种方式可以拆分reducer，从而达到拆分顶级组件逻辑代码的作用，但是一旦整个应用的State变得更加复杂，嵌套更多，势必会导致reducer的嵌套使用，而且像visibilityFilter这样的属性，一个属性就要对应一个reducer，一旦state有多个这样的属性，就会很容易导致reducer过多分的过细的问题。所以这种方式并不是特别的好，可能会导致你的应用变得更加复杂因为嵌套变多了。一种变体：
-![enter description here][4]
+
+![目录](http://7oxjbb.com1.z0.glb.clouddn.com/version0.2.4.jpg)
 
 采用map映射的方法来代替switch case,map 对象中的一个key对应于switch的一个case。
 
