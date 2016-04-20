@@ -313,7 +313,7 @@ NEJ.define([
 ```
 ``im.data = NEJ.copy({},state);`` 如果改成im.data = state 这个state可能莫名会多出很多奇怪的属性，因为regularjs库的原因，组件的一些属性可能成为data的属性。所以整个项目在处理action产生新的state时需要不可变数据操作工具类似immutable.js。自此项目架构基本形成。
 
-#### 3.集成redux-devtools
+### 3.集成redux-devtools
 
 安装 [chrome extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
 
