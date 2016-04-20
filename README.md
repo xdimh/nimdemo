@@ -58,9 +58,9 @@ NEJ.define([
 
 ```
 
-在实现中采用的是NEJ的模块化管理，为了使得项目中不用通过babel将ES6写法转换成ES5,ES3,所以统一采用引入编译后的redux版本，在node_modules/redux/dist/目录下面。同时为了使得Store能够和Reducers关联起来，即Store分发的action能够被Reducer处理，Reducer的处理结果能够被Store获取，这里就需要引入reducers模块。在创建store的时候就需要传入``rootReducer``,同时为了能够处理异步的action，需要引入中间件``thunkMiddleware``。中间件的作用可以参考redux文档或则这篇文章[redux的middleware詳解](http://huli.logdown.com/posts/294284-javascript-redux-middleware-details-tutorial)。
+在实现中采用的是NEJ的模块化管理，为了使得项目中不用通过babel将ES6写法转换成ES5,ES3,所以统一采用引入在node_modules/redux/dist/目录下面编译后的redux版本。同时为了使得Store能够和Reducers关联起来，即Store分发的action能够被Reducer处理，Reducer的处理结果能够被Store获取，这里就需要引入reducers模块。在创建store的时候就需要传入``rootReducer``,同时为了能够处理异步的action，需要引入中间件``thunkMiddleware``。中间件的作用可以参考redux文档或则这篇文章[redux的middleware詳解](http://huli.logdown.com/posts/294284-javascript-redux-middleware-details-tutorial)。
 
-#### 实现Store后下面就需要分别实现Action 和 Reducer部分了。
+#### 实现Store后下面就需要分别实现Action 和 Reducer两部分了。
 
 ```javascript
 
@@ -112,7 +112,7 @@ NEJ.define([
 
 ```
 
-在实现action部分的时候使用到了``Redux.bindActionCreators`` 通过这个函数可以将dispatch和actionCreators结合起来，在Web-IM中可以直接调用对应的包装后的方法，从产生action到store的分发产生的action一站式完成。 如下代码：
+在实现Action部分的时候使用到了``Redux.bindActionCreators`` 通过这个函数可以将dispatch和actionCreators结合起来，在Web-IM中可以直接调用对应的包装后的方法，使得从产生action到store的分发产生的action一站式完成。 如下代码：
 ```javascript
 引入imActions
 //IM组件模板
@@ -127,7 +127,7 @@ addFriend: function() {
 }
 ```
 
-再来看Reducer的实现。一开始根据redux的文档来说每个reducer是一个函数，其中有很多swicth case，且不同的reducer可以关注State的一部分数据片。文档中的Reducer看起来是这样的：
+再来看Reducer部分的实现。一开始根据redux的文档来说每个reducer是一个函数，其中有很多swicth case，且不同的reducer可以关注state的一部分数据片。文档中的reducer看起来是这样的：
 
 ```javascript
 //state 
@@ -183,7 +183,7 @@ const todoApp = combineReducers({
 export default todoApp;
 ```
 
-从代码中看到，虽然通过这种方式可以拆分reducer，从而达到拆分顶级组件逻辑代码的作用，但是一旦整个应用的State变得更加复杂，嵌套更多，势必会导致reducer的嵌套使用，而且像visibilityFilter这样的属性，一个属性就要对应一个reducer，一旦state有多个这样的属性，就会很容易导致reducer过多分的过细的问题。所以这种方式并不是特别的好，可能会导致你的应用变得更加复杂因为嵌套变多了。一种变体：
+从代码中看到，虽然通过这种方式可以拆分reducer，从而达到拆分顶级组件逻辑代码的作用，但是一旦整个应用的state变得更加复杂，嵌套更多，势必会导致reducer的嵌套使用，而且像visibilityFilter这样的属性，一个属性就要对应一个reducer，一旦state有多个这样的属性，就会很容易导致reducer过多分的过细的问题。所以这种方式并不是特别的好，因为嵌套变多了可能会导致你的应用变得更加复杂。下面是一种变体：
 
 ![目录](http://7oxjbb.com1.z0.glb.clouddn.com/version0.2.4.jpg)
 
@@ -286,9 +286,9 @@ NEJ.define([
 });
 
 ```
-最后得到的``rootReducer``方法就是需要和Store进行bind的函数。这样由Store统一分发的action就能够被reducer们处理了，然后返回的新的state就可以Store管理了。
+最后得到的``rootReducer``方法就是需要和Store进行bind的函数。这样由Store统一分发的action就能够被reducer们处理了，然后返回的新的state就可以由Store管理了。
 
-#### 那么如何通知Web-IMState已经变更并进行更新数据和UI。
+#### 那么如何通知Web-IM 应用的 state已经变更并进行更新数据和UI。
 ```javascript
 
 NEJ.define([
@@ -312,9 +312,3 @@ NEJ.define([
 
 ```
 ``im.data = NEJ.copy({},state);`` 如果改成im.data = state 这个state可能莫名会多出很多奇怪的属性，因为regularjs库的原因，组件的一些属性可能成为data的属性。所以整个项目在处理action产生新的state时需要不可变数据操作工具类似immutable.js。自此项目架构基本形成。
-
-
-  [1]: ./images/1461123043008.jpg "1461123043008.jpg"
-  [2]: ./images/1461123190473.jpg "1461123190473.jpg"
-  [3]: ./images/1461119150607.jpg "1461119150607.jpg"
-  [4]: ./images/1461121581090.jpg "1461121581090.jpg"
